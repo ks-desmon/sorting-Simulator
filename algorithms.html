@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">   
+  <style>
+  html, body {
+    overflow-x: hidden;
+    font-family: 'Ubuntu', sans-serif;
+  }
+  .shadowbottom {
+    box-shadow: 1px 2px 4px #888888;
+  }
+</style>
+</head>
+<body>
+  <div class="container-fluid text-muted no-gutters ">
+   <div class="row">
+    <div class="card col-md-12 p-0 border-0 fixed-top">  
+      <div class="card-header text-center py-3 shadowbottom">
+        <p class="h3 font-weight-bold">Sorting Algorithms<button class="btn btn-outline-info float-right"><a href="index.html" >home</a></button></p>
+      </div>
+    </div>
+    <div class="col-md-12 mt-5">
+      <div class="card border-0">
+       <div class="card-body row p-0">	
+        <div class="tab col-12 col-sm-0 col-sm-2 mt-5">
+         <button class="tablinks btn btn-outline-info col-12" onclick="openCity(event, 'Bubble Sort')" id="defaultOpen">Bubble Sort</button>
+         <button class="tablinks btn btn-outline-info col-12" onclick="openCity(event, 'Selection Sort')">Selection Sort</button>
+         <button class="tablinks btn btn-outline-info col-12" onclick="openCity(event, 'Merge Sort')">Merge Sort</button>
+         <button class="tablinks btn btn-outline-info col-12" onclick="openCity(event, 'Quick Sort')">Quick Sort</button>
+       </div>
+       <div id="Bubble Sort" class="tabcontent col-12 col-sm-0 col-sm-10 mt-5">
+         <h1 class="text-muted">Bubble Sort</h1>
+         <p>Sorting Algorithms are concepts that every competitive programmer must know. Sorting algorithms can be used for collections of numbers, strings, characters, or a structure of any of these types.</p>
+         <p>Bubble sort is based on the idea of repeatedly comparing pairs of adjacent elements and then swapping their positions if they exist in the wrong order.</p>
+         <p>The bubble sort makes multiple passes through a list. It compares adjacent items and exchanges those that are out of order. Each pass through the list places the next largest value in its proper place.</p> 
+         <p>In essence, each item “bubbles” up to the location where it belongs.</p>
+         <p>Assume that A[ ] is an unsorted array of N elements. This array needs to be sorted in ascending order. The pseudo code is as follows:</p>
+         <pre style="background-color: #ccc">
+          <code>
+          void bubble_sort( int A[ ], int n ) {
+          int temp;
+          for(int k = 0; k< n-1; k++) {
+            // (n-k-1) is for ignoring comparisons of elements which have already been compared in earlier iterations
+            for(int i = 0; i < n-k-1; i++) {
+              if(A[ i ] > A[ i+1] ) {
+            // here swapping of positions is being done.
+              temp = A[ i ];
+              A[ i ] = A[ i+1 ];
+              A[ i + 1] = temp;
+              }
+            }
+          }
+        }</code>
+      </pre>
+  <p>Lets try to understand the pseudo code with an example: A [ ] = { 7, 4, 5, 2}</p>
+  <div class="col-md-10 offset-md-1 ">
+  <img alt="enter image description here" src="https://he-s3.s3.amazonaws.com/media/uploads/2682167.png" class="img-fluid"></div>
+  <p>To sort the elements of array in ascending order and if the first element is greater than second then, you need to swap the elements but, if the first element is smaller than second, you mustn't swap the element.</p> 
+  <p>Then, again second and third elements are compared and swapped if it is necessary and this process go on until last and second last element is compared and swapped. This completes the first step of bubble sort.</p>
+  <p>If there are <b>n</b> elements to be sorted then, the process mentioned above should be repeated <b>n-1</b> times to get required result.</p> 
+  <p>But, for better performance, in second step, last and second last elements are not compared becuase, the proper element is automatically placed at last after first step.</p>
+  <p>Similarly, in third step, last and second last and second last and third last elements are not compared and so on.</p>
+  <p>Bubble sort is quite popular, there are many other better sorts than bubble sort. Bubble sort should not be used to sort large data.</p>
+</div>
+<div id="Selection Sort" class="tabcontent col-12 col-sm-0 col-sm-10 mt-5">
+  <h1>Selection Sort</h1>
+  <p>The Selection sort algorithm is based on the idea of finding the minimum or maximum element in an unsorted array and then putting it in its correct position in a sorted array.</p>
+  <p>Assume that the array <b>A[ ] = {7, 5, 4, 2}</b> needs to be sorted in ascending order.</p>
+  <p>The minimum element in the array i.e. <b>2</b> is searched for and then swapped with the element that is currently located at the first position, i.e. <b>7</b>. Now the minimum element in the remaining unsorted array is searched for and put in the second position, and so on.</p>
+  <pre style="background-color: #ccc"><code>
+    void selection_sort (int A[ ], int n) {
+    // temporary variable to store the position of minimum element
+
+    int minimum;        
+    // reduces the effective size of the array by one in  each iteration.
+
+    for(int i = 0; i < n-1 ; i++)  {
+
+    // assuming the first element to be the minimum of the unsorted array .
+    minimum = i ;
+
+    // gives the effective size of the unsorted  array .
+
+    for(int j = i+1; j < n ; j++ ) {
+    if(A[ j ] < A[ minimum ])  {                
+
+    //finds the minimum element
+    minimum = j ;
+  }
+}
+// putting minimum element on its proper position.
+swap ( A[ minimum ], A[ i ]) ; 
+}
+}</code></pre>
+<p>At <b>i</b> iteration, elements from position <b>0</b> to <b>i - 1</b> will be sorted</p>
+<div class="col-md-10 offset-md-1 m-0">
+  <img alt="enter image description here" src="https://he-s3.s3.amazonaws.com/media/uploads/2888f5b.png" style="margin-left: 130px;" class="img-fluid">
+</div>
+<p>To sort the elements of array, first element is greater than second then, you need to swap the elements but, if the first element is smaller than second, leave the elements as it is.</p> 
+<p>Then, again first element and third element are compared and swapped if necessary. This process goes on until first and last element of an array is compared. This completes the first step of selection sort.</p>
+<p>If there are <b>n</b> elements to be sorted then, the process mentioned above should be repeated <b>n-1</b> times to get required result.</p> 
+<p>But, for better performance, in second step, comparison starts from second element because after first step, the required number is automatically placed at the first (i.e, in case of sorting in ascending order, smallest element will be at first and in case of sorting in descending order, largest element will be at first.). Similarly, in third step, comparison starts from third element and so on.</p>
+</div>
+<div id="Merge Sort" class="tabcontent col-12 col-sm-0 col-sm-10 mt-5">
+  <h1>Merge Sort</h1>
+  <p>Merge sort is a divide-and-conquer algorithm based on the idea of breaking down a list into several sub-lists until each sublist consists of a single element and merging those sublists in a manner that results into a sorted list.</p>
+  <pre style="background-color: #ccc"><code>
+    void merge(int A[ ] , int start, int mid, int end) {
+    //stores the starting position of both parts in temporary variables.
+
+    int p = start ,q = mid+1;
+    int Arr[end-start+1] , k=0;
+
+    for(int i = start ;i <= end ;i++) {
+    if(p > mid)      //checks if first part comes to an end or not .
+    Arr[ k++ ] = A[ q++] ;
+    else if ( q > end)   //checks if second part comes to an end or not
+    Arr[ k++ ] = A[ p++ ];
+    else if( A[ p ] < A[ q ])     //checks which part has smaller element.
+    Arr[ k++ ] = A[ p++ ];
+    else
+    Arr[ k++ ] = A[ q++];
+  }
+  for(int p=0 ; p< k ;p ++) {
+  /* Now the real array has elements in sorted manner including both parts.*/
+  A[ start++ ] = Arr[ p ] ;                          
+}
+}</code></pre>
+<p>We divide a problem into subproblems and when the solution to each subproblem is ready, we 'combine' the results from the subproblems to solve the main problem.</p>
+<div class="col-md-10 offset-md-1 ">
+<img alt="enter image description" src="https://www.w3schools.in/wp-content/uploads/2016/09/Merge-Sort-Technique-1.png" class="img-fluid">
+</div>
+<p>Here, in merge function, we will merge two parts of the arrays where one part has starting and ending positions from start to mid respectively and another part has positions from mid+1 to the end.</p>
+<pre style="background-color: #ccc"><code>
+  void merge_sort (int A[ ] , int start , int end ) {
+
+  if( start < end ) {
+  int mid = (start + end ) / 2 ;           // defines the current array in 2 parts .
+  merge_sort (A, start , mid ) ;                 // sort the 1st part of array .
+  merge_sort (A,mid+1 , end ) ;              // sort the 2nd part of array.
+
+  // merge the both parts by comparing elements of both the parts.
+  merge(A,start , mid , end );   
+}                    
+}</code></pre>
+<p>First we have to divide the list into the sublists to sort it, by finding the mid and split it into the sublists.</p>
+<p>This process will continue upto when the sublist can not be divided further into sublists. After this we will start merging them to form a list.</p>
+<p>While comparing the sublists for merging, the first element of sublists is taken into consideration. While sorting in ascending order, the element that is of a lesser value becomes a new element of the sorted list. This procedure is repeated until the smaller sublists are empty and the new combined list comprises all the elements of the sublists.</p>
+</div>
+<div id="Quick Sort" class="tabcontent col-12 col-sm-0 col-sm-10 mt-5">
+  <h1>Quick Sort</h1>
+  <p>Quick sort is based on the divide-and-conquer approach based on the idea of choosing one element as a pivot element and partitioning the array around it such that: Left side of pivot contains all the elements that are less than the pivot element Right side contains all elements greater than the pivot</p>
+  <p>Quicksort uses divide-and-conquer is a little different from how merge sort does. In merge sort, the divide step does hardly anything, and all the real work happens in the combine step. Quicksort is the opposite: all the real work happens in the divide step. In fact, the combine step in quicksort does absolutely nothing.</p>
+  <pre style="background-color: #ccc"><code>
+    int partition ( int A[],int start ,int end) {
+    int i = start + 1;
+    int piv = A[start] ;            
+
+    //make the first element as pivot element.
+    for(int j =start + 1; j <= end ; j++ )  {
+    
+    /*rearrange the array by putting elements which are less than pivot on one side and which are greater that on other. */
+    if ( A[ j ] < piv) {
+    swap (A[ i ],A [ j ]);
+    i += 1;
+  }
+}
+//put the pivot element in its proper place.
+swap ( A[ start ] ,A[ i-1 ] ) ;  
+return i-1;   //return the position of the pivot
+}</code></pre>
+<p>Now, let us see the recursive function Quick_sort :</p>
+<pre style="background-color: #ccc"><code>
+  void quick_sort ( int A[ ] ,int start , int end ) {
+  if( start < end ) {
+
+  //stores the position of pivot element
+  int piv_pos = partition (A,start , end ) ;     
+  quick_sort (A,start , piv_pos -1);         //sorts the left side of pivot.    
+  quick_sort ( A,piv_pos +1 , end) ;         //sorts the right side of pivot. 
+}
+}</code></pre>
+<p>As per the Given fig. <b>33</b> becomes the pivot (first element or last element of array can become the pivot). In this fig. first element of array becomes the pivot.</p>
+<img alt="enter image description" src="http://3.bp.blogspot.com/-qJXY9cQJRBE/VrETOipv_KI/AAAAAAAAC_g/iw_qRHp5nQ8/s1600/quickSort.png" class="img-fluid">
+<p>We initialize our partition index as the first element of the array. Then we compare each element with pivot from beginning, if the element is less than the pivot, we will swap the element and by doing this we will get our partitioned array in which all elements smaller than pivot will appear to the left of pivot and elements greater than pivot to its right in the array.</p>
+<p>This process will continue till the start and end point get the same number of the partition index. After partitioning it to the smallest level we start combine it in reverse order including pivot and by this we will get the sorted list.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+ <footer class="footer pt-5 pb-5" style="background-color: rgba(0,0,0,.03);">
+ <div class="container">
+   <span class="text-muted">Design and created by Hec students for college project</span>
+ </div>
+</footer>
+<script>
+  function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+  document.getElementById("defaultOpen").click();
+</script>
+</body>
+</html> 
