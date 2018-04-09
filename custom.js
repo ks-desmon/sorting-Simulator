@@ -1,5 +1,8 @@
 $(document).ready(function() 											
-{	
+{	var test1;
+	var test2;
+	var test3;
+	var test4; 
 	var timeBegan = null
 	, timeStopped = null
 	, stoppedDuration = 0
@@ -39,6 +42,7 @@ $(document).ready(function()
 		, ms = timeElapsed.getUTCMilliseconds();
 		document.getElementById("display-area").innerHTML = 
 		(hour > 9 ? hour : "0" + hour) + ":" + (min > 9 ? min : "0" + min) + ":" + (sec > 9 ? sec : "0" + sec) + "." + (ms > 99 ? ms : ms > 9 ? "0" + ms : "00" + ms);
+		
 	};
 	var timeBegan1 = null
 	, timeStopped1 = null
@@ -71,6 +75,7 @@ $(document).ready(function()
 		, ms1 = timeElapsed1.getUTCMilliseconds();
 		document.getElementById("display-area1").innerHTML = 
 		(hour1 > 9 ? hour1 : "0" + hour1) + ":" + (min1 > 9 ? min1 : "0" + min1) + ":" + (sec1 > 9 ? sec1 : "0" + sec1) + "." + (ms1 > 99 ? ms1 : ms1 > 9 ? "0" + ms1 : "00" + ms1);
+		test1= hour1*3600*1000+min1*60*1000+sec1*1000+ms1;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////testing/////////////////////////////////////////////////////////////////////////
@@ -106,6 +111,7 @@ $(document).ready(function()
 		, ms2 = timeElapsed2.getUTCMilliseconds();
 		document.getElementById("display-area2").innerHTML = 
 		(hour2 > 9 ? hour2 : "0" + hour2) + ":" + (min2 > 9 ? min2 : "0" + min2) + ":" + (sec2 > 9 ? sec2 : "0" + sec2) + "." + (ms2 > 99 ? ms2 : ms2 > 9 ? "0" + ms2 : "00" + ms2);
+		test2= hour2*3600*1000+min2*60*1000+sec2*1000+ms2;
 	};
 	var timeBegan3 = null
 	, timeStopped3 = null
@@ -138,6 +144,7 @@ $(document).ready(function()
 		, ms3 = timeElapsed3.getUTCMilliseconds();
 		document.getElementById("display-area3").innerHTML = 
 		(hour3 > 9 ? hour3 : "0" + hour3) + ":" + (min3 > 9 ? min3 : "0" + min3) + ":" + (sec3 > 9 ? sec3 : "0" + sec3) + "." + (ms3 > 99 ? ms3 : ms3 > 9 ? "0" + ms3 : "00" + ms3);
+		test3= hour3*3600*1000+min3*60*1000+sec3*1000+ms3;
 	};
 	var timeBegan4 = null
 	, timeStopped4 = null
@@ -170,6 +177,7 @@ $(document).ready(function()
 		, ms4 = timeElapsed4.getUTCMilliseconds();
 		document.getElementById("display-area4").innerHTML = 
 		(hour4 > 9 ? hour4 : "0" + hour4) + ":" + (min4 > 9 ? min4 : "0" + min4) + ":" + (sec4 > 9 ? sec4 : "0" + sec4) + "." + (ms4 > 99 ? ms4 : ms4 > 9 ? "0" + ms4 : "00" + ms4);
+		test4= hour4*3600*1000+min4*60*1000+sec4*1000+ms4;
 	};
 	//testing
 	var val=[];
@@ -448,6 +456,7 @@ $(document).ready(function()
 		selectionSort(arry);
 		stop4();
 		clockRunning4();
+		graph();
 		for (var l=0; l<k; l++)
 		{
 			console.log("hey");
@@ -571,5 +580,24 @@ $(document).ready(function()
 		while (swapp);
 		console.log("bubble")
 		return x;
+		}
+		function graph(){
+			google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawVisualization);
+      function drawVisualization() {
+        var data = google.visualization.arrayToDataTable([
+         ['sort', 'Merge', 'Quick', 'Bubble', 'Selection'],
+         ['timing',  parseInt(test1),      parseInt(test2),         parseInt(test3),             parseInt(test4)]
+      ]);
+    var options = {
+      title : 'Grapichal repersentation',
+      vAxis: {title: 'In miliseconds'},
+      hAxis: {title: 'Sortings'},
+      seriesType: 'bars',
+      series: {5: {type: 'line'}}
+    };
+    var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+  }
 		}
 });

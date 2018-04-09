@@ -10,7 +10,6 @@
 
 	<style>
 	html, body {
-		overflow-x: hidden;
 		font-family: 'Ubuntu', sans-serif;
 	}
 	.shadowbottom {
@@ -23,7 +22,6 @@
 </head>
 <body>
 </body>
-
 <div class="container-fluid text-muted no-gutters ">
 	<div class="row">
 		<div class="card col-md-12 p-0 border-0 fixed-top">  
@@ -33,9 +31,6 @@
 		</div>
 	</div>
 </div>
-
-
-
 <div class="container-fluid">
 	<div class="row mt-5">
 		<div class=" shadow col-md-8 offset-md-2 text-muted text-center row mt-5">
@@ -56,15 +51,19 @@
 				<h3>Selection sort</h3>
 				<h3><output id="display-area4">00:00:00.000</output></h3>
 			</div>
+
 			<input type="number" id="getnumber" class="form-control" placeholder="How many no. you want to sort?">
 			<div id="my_div" class="col-12"></div>
 			<div id="my_div2" class="col-12"></div>
 			<button class="btn btn-outline-info btn1 mt-3 mb-5 col-6 offset-md-3" id="submit">Create Rows</button>
 			<button class="btn btn-outline-info hidden btn2 mt-3 mb-5 col-6 offset-md-3" id="all">get sort</button>
+			<div class="col-md-12 row pl-0 pr-0 mr-0 ml-0" >
+					<div id="chart_div" style="width: 100%; height: 500px;" class="img-fluid"></div>
+				</div>
 		</div>
 	</div>
 </div>
-
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
