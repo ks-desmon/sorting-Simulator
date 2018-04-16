@@ -2,7 +2,7 @@ $(document).ready(function()
 {	var test1;
 	var test2;
 	var test3;
-	var test4; 
+	var test4;
 	var timeBegan = null
 	, timeStopped = null
 	, stoppedDuration = 0
@@ -17,7 +17,7 @@ $(document).ready(function()
 		{
 			stoppedDuration += (new Date() - timeStopped);
 		}
-		started = setInterval(clockRunning, 10);	
+		//started = setInterval(clockRunning, 10);	
 	}
 	function stop()
 	{
@@ -75,7 +75,7 @@ $(document).ready(function()
 		, ms1 = timeElapsed1.getUTCMilliseconds();
 		document.getElementById("display-area1").innerHTML = 
 		(hour1 > 9 ? hour1 : "0" + hour1) + ":" + (min1 > 9 ? min1 : "0" + min1) + ":" + (sec1 > 9 ? sec1 : "0" + sec1) + "." + (ms1 > 99 ? ms1 : ms1 > 9 ? "0" + ms1 : "00" + ms1);
-		test1= hour1*3600*1000+min1*60*1000+sec1*1000+ms1;
+		test1=hour1*3600*60*1000+min1*60*1000+sec1*1000+ms1;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////testing/////////////////////////////////////////////////////////////////////////
@@ -111,7 +111,7 @@ $(document).ready(function()
 		, ms2 = timeElapsed2.getUTCMilliseconds();
 		document.getElementById("display-area2").innerHTML = 
 		(hour2 > 9 ? hour2 : "0" + hour2) + ":" + (min2 > 9 ? min2 : "0" + min2) + ":" + (sec2 > 9 ? sec2 : "0" + sec2) + "." + (ms2 > 99 ? ms2 : ms2 > 9 ? "0" + ms2 : "00" + ms2);
-		test2= hour2*3600*1000+min2*60*1000+sec2*1000+ms2;
+		test2=hour2*3600*60*1000+min2*60*1000+sec2*1000+ms2;
 	};
 	var timeBegan3 = null
 	, timeStopped3 = null
@@ -144,7 +144,7 @@ $(document).ready(function()
 		, ms3 = timeElapsed3.getUTCMilliseconds();
 		document.getElementById("display-area3").innerHTML = 
 		(hour3 > 9 ? hour3 : "0" + hour3) + ":" + (min3 > 9 ? min3 : "0" + min3) + ":" + (sec3 > 9 ? sec3 : "0" + sec3) + "." + (ms3 > 99 ? ms3 : ms3 > 9 ? "0" + ms3 : "00" + ms3);
-		test3= hour3*3600*1000+min3*60*1000+sec3*1000+ms3;
+		test3=hour3*3600*60*1000+min3*60*1000+sec3*1000+ms3;
 	};
 	var timeBegan4 = null
 	, timeStopped4 = null
@@ -177,20 +177,21 @@ $(document).ready(function()
 		, ms4 = timeElapsed4.getUTCMilliseconds();
 		document.getElementById("display-area4").innerHTML = 
 		(hour4 > 9 ? hour4 : "0" + hour4) + ":" + (min4 > 9 ? min4 : "0" + min4) + ":" + (sec4 > 9 ? sec4 : "0" + sec4) + "." + (ms4 > 99 ? ms4 : ms4 > 9 ? "0" + ms4 : "00" + ms4);
-		test4= hour4*3600*1000+min4*60*1000+sec4*1000+ms4;
-	};
+		test4=hour4*3600*60*1000+min4*60*1000+sec4*1000+ms4;
+		};
 	//testing
 	var val=[];
 	$('#submit').click(function()
 	{
 		if($('#getnumber').val()=="")
 		{
-			alert("Kindly Enter the No. Of Rows You Want to Sort.");
+			alert("Kindly enter the number of rows you want to sort.");
 		}
 		else
 		{
 			$('.btn1').addClass("hidden");
 			$('.btn2').removeClass("hidden");
+			$('.btn3').removeClass("hidden");
 			$('#getnumber').addClass("hidden");
 			var i = $('#getnumber').val();
 			for (j=0;j<i;j++)
@@ -199,6 +200,19 @@ $(document).ready(function()
 			}	
 		}
 	});
+	$('#submit1').click(function()
+	{
+			$('.btn1').addClass("hidden");
+			$('.btn4').removeClass("hidden");
+			$('.btn3').removeClass("hidden");
+			$('#getnumber').addClass("hidden");
+			var i = 250;
+			for (j=0;j<i;j++)
+			{
+				
+				my_div.innerHTML = my_div.innerHTML +"<div class='row'><input type='number' class='abc form-control mt-1 mb-1' id='getnumber"+j+"' value='"+Math.floor((Math.random() * 1000) + 1)+"' placeholder='Enter Number "+j+"'></div>"
+			}	
+	});
 	$('#bubble').click(function()
 	{
 		var k = $('#getnumber').val();
@@ -206,8 +220,9 @@ $(document).ready(function()
 		{	
 			if ($('#getnumber'+j).val()=="")
 			{
-				alert("plz enter values");
-				break;
+				alert("Please enter appropriate values.");
+				val.length=0;
+				return false;	
 
 			}
 			else
@@ -215,6 +230,7 @@ $(document).ready(function()
 				val.push($('#getnumber'+j).val());	
 			}
 		}
+
 		var a=val
 		var swapp;
 		var x=a;
@@ -225,7 +241,7 @@ $(document).ready(function()
 			swapp = false;
 			for (var i=0; i < n; i++)
 			{
-				if (parseInt(x[i]) > parseInt(x[i+1]))
+				if (parseFloat(x[i]) > parseFloat(x[i+1]))
 				{
 					var temp = x[i];
 					x[i] = x[i+1];
@@ -253,8 +269,8 @@ $(document).ready(function()
 		{	
 			if ($('#getnumber'+j).val()=="")
 			{
-				alert("plz enter values");
-				break;
+				alert("Please enter appropriate values.");
+				return false;
 			}
 			else
 			{
@@ -285,11 +301,11 @@ $(document).ready(function()
 			return array;
 		}
 		function compare(a, b) {
-			if (parseInt(a) < parseInt(b))
+			if (parseFloat(a) < parseFloat(b))
 			{
 				return -1;
 			}
-			if (parseInt(a) > parseInt(b))
+			if (parseFloat(a) > parseFloat(b))
 			{
 				return 1;
 			}  
@@ -303,7 +319,7 @@ $(document).ready(function()
 			return array;
 		}
 		selectionSort(arr);
-		console.log(selectionSort(arr));
+		
 		for (l=0; l < arr.length; l++)
 		{
 			my_div2.innerHTML = my_div2.innerHTML +"<div class='row'><input type='number' class='form-control mt-1 mb-1' value='"+arr[l]+"' placeholder='Enter Number'></div>"
@@ -318,8 +334,8 @@ $(document).ready(function()
 		{	
 			if ($('#getnumber'+j).val()=="")
 			{
-				alert("plz enter values");
-				break;
+				alert("Please enter appropriate values.");
+				return false;
 			}
 			else
 			{
@@ -341,7 +357,7 @@ $(document).ready(function()
 		{
 			var result = [];
 			while (left.length && right.length) {
-				if (parseInt(left[0]) <= parseInt(right[0]))
+				if (parseFloat(left[0]) <= parseFloat(right[0]))
 				{
 					result.push(left.shift());
 				}
@@ -373,8 +389,8 @@ $(document).ready(function()
 		{	
 			if ($('#getnumber'+j).val()=="")
 			{
-				alert("plz enter values");
-				break;
+				alert("Please enter appropriate values.");
+				return false;
 			}
 			else
 			{
@@ -397,7 +413,7 @@ $(document).ready(function()
 				var length = origArray.length;
 				for (var i = 0; i < length; i++)
 				{
-					if (parseInt(origArray[i]) <= parseInt(pivot))
+					if (parseFloat(origArray[i]) <= parseFloat(pivot))
 					{
 						left.push(origArray[i]);
 					}
@@ -410,7 +426,7 @@ $(document).ready(function()
 			}
 		}
 		var myArray = val;
-		var arr = quickck_Sort(myArray);
+		var arr = quick_Sort(myArray);
 		stop();
 		clockRunning(); 
 		for (var l=0; l < arr.length; l++)
@@ -420,15 +436,16 @@ $(document).ready(function()
 		}
 		$('.btn2').addClass("hidden");
 	});
-	$('#all').click(function()
+	$('#allauto').click(function()
 	{
-		var k = $('#getnumber').val();
+	// 	var k = $('#getnumber').val();
+	    var k =250;
 		for (j=0;j<k;j++)
 		{	
 			if ($('#getnumber'+j).val()=="")
 			{
-				alert("Please enter values you want to sort");
-				exit();
+				alert("Please enter appropriate values.");
+				return false;
 			}
 			else
 			{
@@ -438,31 +455,113 @@ $(document).ready(function()
 		}
 		var myArray = val;
 		var arr = val;
-		var x = val;
+		var a = val;
 		var arry=val;
 		start1();
-		var result=mergeSort(arr);
+		var result1=mergeSort(arr);
 		stop1();
 		clockRunning1();
-		start2();
-		quick_Sort(myArray);
-		stop2();
-		clockRunning2();
 		start3();
-		bubble(x);
+		var result3=bubble(a);
 		stop3();
 		clockRunning3();
 		start4();
-		selectionSort(arry);
+		var result4 = selectionSort(arry);
 		stop4();
 		clockRunning4();
+		start2();
+		var result2 =quick_Sort(myArray);
+		stop2();
+		clockRunning2();
 		graph();
 		for (var l=0; l<k; l++)
 		{
-			console.log("hey");
-			my_div2.innerHTML = my_div2.innerHTML +"<div class='row'><input type='number' class='form-control mt-1 mb-1' value='"+result[l]+"' placeholder='Enter Number'></div>"
+			
+			my_div2.innerHTML = my_div2.innerHTML +"<div class='row'><input type='number' class='form-control mt-1 mb-1' value='"+result1[l]+"' placeholder='Enter Number'></div>"
 			$(".abc").addClass("hidden");
 		}
+		// for (var l=0; l<k; l++)
+		// {
+		// 	
+		// 	my_div2.innerHTML = my_div2.innerHTML +"<div class='row'><input type='number' class='form-control mt-1 mb-1' value='"+result2[l]+"' placeholder='Enter Number'></div>"
+		// 	$(".abc").addClass("hidden");
+		// }
+		// for (var l=0; l<k; l++)
+		// {
+			
+		// 	my_div2.innerHTML = my_div2.innerHTML +"<div class='row'><input type='number' class='form-control mt-1 mb-1' value='"+result2[l]+"' placeholder='Enter Number'></div>"
+		// 	$(".abc").addClass("hidden");
+		// }
+		// for (var l=0; l<k; l++)
+		// {
+		// 	
+		// 	my_div2.innerHTML = my_div2.innerHTML +"<div class='row'><input type='number' class='form-control mt-1 mb-1' value='"+result4[l]+"' placeholder='Enter Number'></div>"
+		// 	$(".abc").addClass("hidden");
+		// }
+		$('.btn2').addClass("hidden");
+	});
+	$('#all').click(function()
+	{
+	 	var k = $('#getnumber').val();
+	//   var k =250;
+		for (j=0;j<k;j++)
+		{	
+			if ($('#getnumber'+j).val()=="")
+			{
+				alert("Please enter appropriate values.");
+				return false;
+			}
+			else
+			{
+				val.push($('#getnumber'+j).val());	
+
+			}
+		}
+		var myArray = val;
+		var arr = val;
+		var a = val;
+		var arry=val;
+		start1();
+		var result1=mergeSort(arr);
+		stop1();
+		clockRunning1();
+		start3();
+		var result3=bubble(a);
+		stop3();
+		clockRunning3();
+		start4();
+		var result4 = selectionSort(arry);
+		stop4();
+		clockRunning4();
+		start2();
+		var result2 =quick_Sort(myArray);
+		stop2();
+		clockRunning2();
+		graph();
+		for (var l=0; l<k; l++)
+		{
+			
+			my_div2.innerHTML = my_div2.innerHTML +"<div class='row'><input type='number' class='form-control mt-1 mb-1' value='"+result1[l]+"' placeholder='Enter Number'></div>"
+			$(".abc").addClass("hidden");
+		}
+		// for (var l=0; l<k; l++)
+		// {
+		// 	
+		// 	my_div2.innerHTML = my_div2.innerHTML +"<div class='row'><input type='number' class='form-control mt-1 mb-1' value='"+result2[l]+"' placeholder='Enter Number'></div>"
+		// 	$(".abc").addClass("hidden");
+		// }
+		// for (var l=0; l<k; l++)
+		// {
+			
+		// 	my_div2.innerHTML = my_div2.innerHTML +"<div class='row'><input type='number' class='form-control mt-1 mb-1' value='"+result2[l]+"' placeholder='Enter Number'></div>"
+		// 	$(".abc").addClass("hidden");
+		// }
+		// for (var l=0; l<k; l++)
+		// {
+		// 	
+		// 	my_div2.innerHTML = my_div2.innerHTML +"<div class='row'><input type='number' class='form-control mt-1 mb-1' value='"+result4[l]+"' placeholder='Enter Number'></div>"
+		// 	$(".abc").addClass("hidden");
+		// }
 		$('.btn2').addClass("hidden");
 	});
 		function quick_Sort(origArray)
@@ -489,7 +588,7 @@ $(document).ready(function()
 						right.push(origArray[i]);
 					}
 				}
-				console.log("quick");
+				
 				return newArray.concat(quick_Sort(left), pivot, quick_Sort(right));
 			}
 		}
@@ -506,7 +605,7 @@ $(document).ready(function()
 		{
 			var result = [];
 			while (left.length && right.length) {
-				if (parseInt(left[0]) <= parseInt(right[0]))
+				if (parseFloat(left[0]) <= parseFloat(right[0]))
 				{
 					result.push(left.shift());
 				}
@@ -519,7 +618,7 @@ $(document).ready(function()
 				result.push(left.shift());
 			while (right.length)
 				result.push(right.shift());
-			console.log("merge");
+			
 			return result;
 		}
 		function selectionSort(array)
@@ -539,47 +638,46 @@ $(document).ready(function()
 				}
 				swap(array, index, smallestValIndex);
 			});
-			console.log("selection");
 			return array;
 		}
 		function compare(a, b) {
-			if (parseInt(a) < parseInt(b))
+			if (parseFloat(a) < parseFloat(b))
 			{
 				return -1;
 			}
-			if (parseInt(a) > parseInt(b))
+			if (parseFloat(a) > parseFloat(b))
 			{
 				return 1;
 			}  
 			return 0;
 		}
 		function swap(array, a, b) {
+			
 			var tmp1 = array[a];
 			var tmp2 = array[b];
 			array[a] = tmp2;
 			array[b] = tmp1;
 			return array;
 		}
-		function bubble(x)
-		{
-		do
-		{
-			swapp = false;
-			for (var i=0; i < x.length; i++)
-			{
-				if (parseInt(x[i]) > parseInt(x[i+1]))
-				{
-					var temp = x[i];
-					x[i] = x[i+1];
-					x[i+1] = temp;
-					swapp = true;
-				}
-			}
-			x.length--;
-		}
-		while (swapp);
-		console.log("bubble")
-		return x;
+		function bubble(a) {
+		  var swapped = false,
+		    i = 1,
+		    j = a.length,
+		    tmp;
+		 
+		  for (; i < j; i += 1) {
+		    if (a[i - 1] > a[i]) {
+		      tmp = a[i];
+		      a[i] = a[i - 1];
+		      a[i - 1] = tmp;
+		      swapped = true;
+		    }
+		  }
+		 
+		  if (swapped) {
+		    bubble(a);
+		  }
+		  return a;
 		}
 		function graph(){
 			google.charts.load('current', {'packages':['corechart']});
@@ -587,11 +685,11 @@ $(document).ready(function()
       function drawVisualization() {
         var data = google.visualization.arrayToDataTable([
          ['sort', 'Merge', 'Quick', 'Bubble', 'Selection'],
-         ['timing',  parseInt(test1),      parseInt(test2),         parseInt(test3),             parseInt(test4)]
+         ['',  parseInt(test1),      parseInt(test2),         parseInt(test3),             parseInt(test4)]
       ]);
     var options = {
       title : 'Grapichal repersentation',
-      vAxis: {title: 'In miliseconds'},
+      vAxis: {title: 'Timing (In miliseconds)'},
       hAxis: {title: 'Sortings'},
       seriesType: 'bars',
       series: {5: {type: 'line'}}
@@ -599,5 +697,5 @@ $(document).ready(function()
     var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
     chart.draw(data, options);
   }
-		}
+}
 });
